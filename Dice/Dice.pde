@@ -1,18 +1,3 @@
-//Group Name
-//Project Name
-
-
-void setup() {
-  textSize(42);
-  size(1350, 700);
-}
-
-
-void draw() {
-  background(0);
-  Dice();
-}
-
 void Dice() {
 
   int dice1 = int(random(5));

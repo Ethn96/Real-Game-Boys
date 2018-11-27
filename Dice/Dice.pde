@@ -1,8 +1,6 @@
 //Group Name
 //Project Name
 
-int dice1;
-int dice2;
 
 void setup() {
   textSize(42);
@@ -12,13 +10,13 @@ void setup() {
 
 void draw() {
   background(0);
-  Dice(dice1, dice2);
+  Dice();
 }
 
-void Dice(int dice1, int dice2) {
+void Dice() {
 
-  dice1 = int(random(5));
-  dice2 = int(random(5));
+  int dice1 = int(random(5));
+  int dice2 = int(random(5));
 
   rect(1220, 570, 120, 120);
   rect(1080, 570, 120, 120);

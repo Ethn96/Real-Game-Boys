@@ -1,34 +1,31 @@
-//Select
-
-void setup(){
-  size(1350,700);
-
+void selectdice(){
+ abutton(#FFFFFF, 100, 300, 400, 400, 0);
+ hbutton(#FFFFFF, 100, 500, 400, 600, 0);
 }
 
-void draw(){
-  
- selectscreen();
-}
-
-void selectscreen(){
- button(#FFFFFF, 100, 300, 400, 400, 0);
-
-}
-
-void button(color basecolour, float corner1x,float corner1y,float corner2x,float corner2y,color whenhovered){
-  fill(basecolour);
-  if(mousePressed && corner1x<mouseX && mouseX<corner2x && corner1y<mouseY && mouseY<corner2y){
-    Dice();
+void abutton(color abasecolour, float acorner1x,float acorner1y,float acorner2x,float acorner2y,color awhenhovered){
+  fill(abasecolour);
+  if(mousePressed && acorner1x<mouseX && mouseX<acorner2x && acorner1y<mouseY && mouseY<acorner2y){
+    aDice();
   }
   rectMode(CORNERS);
-  rect(corner1x,corner1y,corner2x,corner2y);
+  rect(acorner1x,acorner1y,acorner2x,acorner2y);
+}
+
+void hbutton(color hbasecolour, float hcorner1x,float hcorner1y,float hcorner2x,float hcorner2y,color hwhenhovered){
+  fill(hbasecolour);
+  if(mousePressed && hcorner1x<mouseX && mouseX<hcorner2x && hcorner1y<mouseY && mouseY<hcorner2y){
+ background(#EAEEAA);}
+   rectMode(CORNERS);
+  rect(hcorner1x,hcorner1y,hcorner2x,hcorner2y);
 }
 
 
 
 
 
-void Dice() {
+void aDice() {
+  background(#EAEAEE);
   rectMode(CORNER);
   int dice1 = int(random(5));
   int dice2 = int(random(5));

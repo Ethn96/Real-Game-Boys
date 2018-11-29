@@ -9,7 +9,7 @@ void button(color basecolour, float corner1x, float corner1y, float corner2x, fl
     if(function.toLowerCase().equals("background")){
       background(0);
     }
-    if(function.toLowerCase().equals("dice"){
+    if(function.toLowerCase().equals("dice")){
       Dice();
     }
   }

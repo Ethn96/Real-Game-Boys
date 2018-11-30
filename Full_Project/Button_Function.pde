@@ -1,19 +1,19 @@
-void button(color basecolour, float corner1x, float corner1y, float corner2x, float corner2y, color whenhovered, color whenpressed, String function) {
+void button(color basecolour, float cornerx, float cornery, float sizex, float sizey, color whenhovered, color whenpressed, String function) {
   fill(basecolour);
-  if (corner1x<mouseX && mouseX<corner2x && corner1y<mouseY && mouseY<corner2y) {
+  if (cornerx<mouseX && mouseX<(cornerx+sizex) && cornery<mouseY && mouseY<(cornery+sizey)) {
     fill(whenhovered);
   }
-  if (mousePressed && corner1x<mouseX && mouseX<corner2x && corner1y<mouseY && mouseY<corner2y) {
-    fill(whenpressed);
+  if (mousePressed && cornerx<mouseX && mouseX<(cornerx+sizex) && cornery<mouseY && mouseY<(cornery+sizey)) {
     if(function.toLowerCase().equals("background")){
       background(0);
     }
     if(function.toLowerCase().equals("dice")){
       Dice();
     }
+    fill(whenpressed);
   }
-  rectMode(CORNERS);
-  rect(corner1x, corner1y, corner2x, corner2y);
+  rectMode(CORNER);
+  rect(cornerx, cornery, sizex, sizey);
 }
 void buttonimage(float cornerx, float cornery, float sizex, float sizey, String imagename) {
   PImage image = loadImage(imagename);

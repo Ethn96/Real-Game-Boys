@@ -1,4 +1,5 @@
 void Dice() {
+  background(0);
   rectMode(CORNER);
   textSize(27);
   int dice1 = int(random(5));

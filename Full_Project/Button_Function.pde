@@ -15,7 +15,3 @@ void button(color basecolour, float cornerx, float cornery, float sizex, float s
   rectMode(CORNER);
   rect(cornerx, cornery, sizex, sizey);
 }
-void buttonimage(float cornerx, float cornery, float sizex, float sizey, String imagename) {
-  PImage image = loadImage(imagename);
-  image(image, cornerx, cornery, sizex, sizey);
-}

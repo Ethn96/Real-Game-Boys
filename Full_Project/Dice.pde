@@ -1,8 +1,8 @@
 void Dice() {
-
-  int dice1 = int(random(5));
-  int dice2 = int(random(5));
-
+background(0);
+  int dice1 = int(random(6));
+  int dice2 = int(random(6));
+fill(255);
   rect(1220, 570, 120, 120);
   rect(1080, 570, 120, 120);
 
@@ -89,5 +89,4 @@ void Dice() {
   
   fill(255);
   text("You moved " + (dice1 + dice2) + " spaces", 200, 200);
-  noLoop();
 }

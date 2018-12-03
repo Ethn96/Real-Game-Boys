@@ -8,6 +8,9 @@ int dicebuttony=150;
 int dicebuttonsizex=250;
 int dicebuttonsizey=120;
 boolean piecemovement=false;
+int countdown=0;
+int player1x=50;
+int player2x=50;
 void setup() {
   size(1350, 700);
   Board=loadImage("SnLboard.jpg");
@@ -27,8 +30,8 @@ void draw() {
   rect(1009, 100, 400, 10);
   rect(1009, 310, 400, 10);
   button(#FFFFFF, dicebuttonx, dicebuttony, dicebuttonsizex, dicebuttonsizey, #0AFCDE);
-image(Player2,50,620,40,60);
-image(Player,50,620,40,60);
+image(Player,player1x,620,40,60);
+image(Player2,player2x,620,40,60);
 fill(0);
 text("Roll Dice",1110,220);
 fill(255); 
@@ -65,13 +68,18 @@ if (dice2 == 1) {
     fill(255); 
   textSize(25); 
   text("You moved ", 1050, 630); 
-  text((dice2) +" Space(s)", 1065, 660);
+  text((dice2) +" Space(s)", 1065, 660);  
+if(countdown!=0){
+  countdown-=5;
+  player1x+=5;
 }
+}
+
+
 int Dice() {
   int dice = int(random(6));
   return dice;
 }
-if(dice2==
 
 
 
@@ -80,6 +88,19 @@ void mouseClicked(){
   if(piecemovement==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)){
   dice2=Dice();
   dice2+=1;
+  if(dice2==1){
+  countdown=100;
+}else if(dice2==2){
+  countdown=200;
+}else if(dice2==3){
+  countdown=300;
+}else if(dice2==4){
+  countdown=400;
+}else if(dice2==5){
+  countdown=500;
+}else if(dice2==6){
+  countdown=600;
+}
   piecemovement=true;
   } 
  }

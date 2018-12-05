@@ -1,9 +1,9 @@
-void button(color basecolour, float cornerx, float cornery, float sizex, float sizey, color whenhovered) {
+void button(color basecolour, float dicebuttonx, float dicebuttony, float dicebuttonsizex, float dicebuttonsizey, color whenhovered) {
   fill(basecolour);
-  if (cornerx<mouseX && mouseX<(cornerx+sizex) && cornery<mouseY && mouseY<(cornery+sizey)) {
+  if (dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)) {
     fill(whenhovered);
     Dice();
   }
   rectMode(CORNER);
-  rect(cornerx, cornery, sizex, sizey);
+  rect(dicebuttonx, dicebuttony, dicebuttonsizex, dicebuttonsizey);
 }

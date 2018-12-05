@@ -1,23 +1,27 @@
 int dice1 = 0;
 int dice2=0;
-int dicebuttonx=50;
-int dicebuttony=50;
-int dicebuttonsizex=50;
-int dicebuttonsizey=50;
+int dicebuttonx=1100;
+int dicebuttony=400;
+int dicebuttonsizex=200;
+int dicebuttonsizey=100;
 
 void setup() {
   size(1350, 700);
+  background(#149636);
 }
 
 void draw() {
   background(#149636);
   textSize(35);
   noStroke();
-  button(#246EFF, 1100, 400, 200, 100, #1555D1);
+  button(#246EFF, dicebuttonx, dicebuttony, dicebuttonsizex, dicebuttonsizey, #1555D1);
   fill(0);
   text("Roll Dice", 1125, 460);
-  
-   if (dice1 == 1) {
+  fill(255);
+  rect(1220, 570, 120, 120);
+  rect(1080, 570, 120, 120);
+  fill(0);
+  if (dice1 == 1) {
     rect(1130, 620, 20, 20);
   } else if (dice1 == 2) {
     rect(1090, 580, 20, 20);
@@ -45,7 +49,7 @@ void draw() {
     rect(1090, 620, 20, 20);
     rect(1170, 620, 20, 20);
   }
- if (dice2 == 1) {
+  if (dice2 == 1) {
     rect(1270, 620, 20, 20);
   } else if (dice2 == 2) {
     rect(1230, 580, 20, 20);
@@ -73,17 +77,14 @@ void draw() {
     rect(1230, 620, 20, 20);
     rect(1310, 620, 20, 20);
   } 
-  fill(255);
   text("You moved " + (dice1 + dice2) + " spaces", 200, 200);
 }
 
-void mouseClicked(){
-  //having it so you can't hold the button down
-  if(/*piecemovement==false &&*/ dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(buttony+dicebuttonsizey)){
-  dice1=Dice();
-  dice2=Dice();
-  dice1+=1;
-  dice2+=1;
-  //piecemovement=true;
-  } 
- }
+void mousePressed() {
+  if (dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)) {
+    dice1=Dice();
+    dice2=Dice();
+    dice1+=1;
+    dice2+=1;
+  }
+}

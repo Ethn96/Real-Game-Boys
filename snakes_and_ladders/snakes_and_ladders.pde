@@ -105,7 +105,7 @@ int Dice() {
 
 
 
-void mouseClicked(){
+void mousePressed(){
   //having it so you can't hold the button down
   if(piecemovement==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)){
   dice2=Dice();
@@ -147,7 +147,8 @@ void mouseClicked(){
 }else if(dice2==6 && (player1y==552 || player1y==416 ||player1y==280 || player1y==144)){
   xcountdown=-510;
 }
-  //piecemovement=true;
+//add funtion so it doesnt travel off of screen wit 16 if statements  
+//piecemovement=true;
   } 
  }
 void button(color basecolour, float cornerx, float cornery, float sizex, float sizey, color whenhovered) {

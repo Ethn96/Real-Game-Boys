@@ -1,3 +1,4 @@
+PImage MonopolyBoard;
 int dice1 = 0;
 int dice2=0;
 int dicebuttonx=1100;
@@ -7,11 +8,12 @@ int dicebuttonsizey=100;
 
 void setup() {
   size(1350, 700);
-  background(#149636);
+  MonopolyBoard = loadImage("MonopolyBoard.png");
 }
 
 void draw() {
   background(#149636);
+  image(MonopolyBoard, -305, -5, 1500, 708);
   textSize(35);
   noStroke();
   button(#246EFF, dicebuttonx, dicebuttony, dicebuttonsizex, dicebuttonsizey, #1555D1);
@@ -77,7 +79,8 @@ void draw() {
     rect(1230, 620, 20, 20);
     rect(1310, 620, 20, 20);
   } 
-  text("You moved " + (dice1 + dice2) + " spaces", 200, 200);
+  text("You moved ", 1110, 280);
+  text( + (dice1 + dice2) + " spaces", 1130, 318);
 }
 
 void mousePressed() {

@@ -1,24 +1,27 @@
 PImage MonopolyBoard;
+PImage Player1;
 int dice1 = 0;
 int dice2 = 0;
-int dicebuttonx=1100;
-int dicebuttony=400;
+int dicebuttonx=1110;
+int dicebuttony=430;
 int dicebuttonsizex=200;
 int dicebuttonsizey=100;
 
 void setup() {
   size(1350, 700);
-  MonopolyBoard = loadImage("MonopolyBoard.png");
+  MonopolyBoard = loadImage("MonopolyBoard.jpg");
+  Player1 = loadImage("Player1.png");
 }
 
 void draw() {
   background(#149636);
   image(MonopolyBoard, 0, 0);
+  image(Player1, 1000, 600, 40, 60);
   textSize(35);
   noStroke();
   button(#246EFF, dicebuttonx, dicebuttony, dicebuttonsizex, dicebuttonsizey, #1555D1);
   fill(0);
-  text("Roll Dice", 1125, 460);
+  text("Roll Dice", 1135, 490);
   fill(255);
   rect(1220, 570, 120, 120);
   rect(1080, 570, 120, 120);

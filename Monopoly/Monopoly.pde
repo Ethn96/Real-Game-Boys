@@ -7,22 +7,20 @@ int dicebuttonx=1110;
 int dicebuttony=430;
 int dicebuttonsizex=200;
 int dicebuttonsizey=100;
-int playerx = 380;
-int playery = 640;
 boolean player1turn=true;
 boolean player2turn=false;
 boolean piecemovement=false;
-//75
+int s0 = 975;
 int s1 = 870;
 int s2 = 785;
 int s3 = 700;
 int s4 = 610;
 int s5 = 530;
-int s6 = 440;
-int s7 = 420;
-int s8 = 345;
-int s9;
-int s10;
+int s6 = 435;
+int s7 = 355;
+int s8 = 270;
+int s9 = 180;
+int s10 = 20;
 int s11;
 int s12;
 int s13;
@@ -53,6 +51,10 @@ int s37;
 int s38;
 int s39;
 int s40;
+int player1x = s0;
+int player1y = 640;
+int player2x = s0;
+int player2y = 640;
 
 
 void setup() {
@@ -66,7 +68,7 @@ void draw() {
   imageMode(CORNER);
   image(MonopolyBoard, 0, 0);
   imageMode(CENTER);
-  image(Player1, playerx, playery, 40, 60);
+  image(Player1, player1x, player1y, 40, 60);
   textSize(35);
   noStroke();
   button(#246EFF, dicebuttonx, dicebuttony, dicebuttonsizex, dicebuttonsizey, #1555D1);
@@ -86,41 +88,44 @@ void mousePressed() {
     dice1+=1;
     dice2+=1;
     dicetotal = dice1 + dice2;
-    
-    if (dicetotal == 2) {
-      playerx = s2;
-    }
-    if (dicetotal == 3) {
-      playerx = s3;
-    }
-    if (dicetotal == 4) {
-      playerx = s4;
-    }
-    if (dicetotal == 5) {
-      playerx = s5;
-    }
-    if (dicetotal == 6) {
-      playerx = s6;
-    }
-    if (dicetotal == 7) {
-      playerx = s7;
-    }
-    if (dicetotal == 8) {
-      playerx = s8;
-    }
-    if (dicetotal == 9) {
-      playerx = s9;
-    }
-    if (dicetotal == 10) {
-      playerx = s10;
-    }
-    if (dicetotal == 11) {
-      playerx = s11;
-    }
-    if (dicetotal == 12) {
-      playerx = s12;
+
+    if (player1x >= 975) {
+      if (dicetotal == 2) {
+
+      }
+      if (dicetotal == 3) {
+
+      }
+      if (dicetotal == 4) {
+
+      }
+      if (dicetotal == 5) {
+
+      }
+      if (dicetotal == 6) {
+
+      }
+      if (dicetotal == 7) {
+
+      }
+      if (dicetotal == 8) {
+
+      }
+      if (dicetotal == 9) {
+
+      }
+      if (dicetotal == 10) {
+
+      }
+      if (dicetotal == 11) {
+
+      }
+      if (dicetotal == 12) {
+
+      }
     }
     player1turn = false;
+    player2turn = true;
   }
 }
 

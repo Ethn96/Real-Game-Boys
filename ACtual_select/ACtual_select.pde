@@ -542,7 +542,10 @@ void button(color basecolour, float cornerx, float cornery, float sizex, float s
     if(function.toLowerCase().equals("start game snakes")){
       snakes=true;
       startup=false;
-    
+     player1x=50;
+player2x=50;
+ player1y=620;
+ player2y=620;
 if (startgameturn==0) {
     player2turn=true;
   }

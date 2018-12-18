@@ -87,6 +87,8 @@ rect(0,0,1350,700);
  text(frames2,100,100);
  rectMode(CORNER);
   background(0);
+
+  
   if (gameover==false) {
     fill(#FFFFFF);
     //Lines for seperation of board
@@ -546,6 +548,10 @@ void button(color basecolour, float cornerx, float cornery, float sizex, float s
 player2x=50;
  player1y=620;
  player2y=620;
+  x1countdown=0; 
+  y1countdown=0;
+ x2countdown=0;
+ y2countdown=0;
 if (startgameturn==0) {
     player2turn=true;
   }

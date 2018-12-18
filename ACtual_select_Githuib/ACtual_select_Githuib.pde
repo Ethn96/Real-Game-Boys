@@ -597,7 +597,7 @@ void button(color basecolour, float cornerx, float cornery, float sizex, float s
       matthew = false;
       radical = false;
       gameover = false;
-      prestartup();
+      selectdice();
     }
 
     fill(whenpressed);

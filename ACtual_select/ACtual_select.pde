@@ -62,12 +62,7 @@ Board=loadImage("SnLboard.jpg");
   Player=loadImage("player.png");
   Player2=loadImage("player2.png");
   startgameturn=int(random(2));
-  if (startgameturn==0) {
-    player2turn=true;
-  }
-  if (startgameturn==1) {
-    player1turn=true;
-  }
+  
  
  }
 
@@ -375,6 +370,11 @@ rect(0,0,1350,700);
       textSize(120);
       text("PLAYER 1 WINS", 200, 300);
       gameover=true;
+   
+     button(0, 500, 350, 300, 150, 255,90,"start game restart game");
+     textSize(24);
+     fill(#12FFED);
+      text("Click Here to Restart", 530,430);
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   }
   }
@@ -383,19 +383,36 @@ rect(0,0,1350,700);
     if (x2countdown==0) {
       fill(#4BFFFA);
       textSize(120);
+     
       text("PLAYER 2 WINS", 200, 300);
       gameover=true;
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+    textSize(24);
+ button(0, 500, 350, 300, 150, 255,90,"start game restart game"); 
+fill(#12FFED);
+text("Click Here to Restart", 530,430);
+}
   }
-  }
+  
+  
+  button(#FC0307, -2, -2, 100, 50, 255,90,"start game restart game");
+ fill(255);
+   textSize(24);
+  text("Quit",20,30);
+if(player1turn == true){text("Player 2's turn next", 1060, 470);}
+if(player2turn == true){text("Player 1's turn next", 1060, 470);}
  }
  
  
   if(monopoly == true){
   startup = false;
     clear();
-    rect(0,0,1350, 700); 
-
+ 
+  button(#FC0307, -2, -2, 100, 50, 255,90,"start game restart game");
+ fill(255);
+  textSize(24);
+  text("Quit",20,30);
  }
  
  
@@ -409,6 +426,10 @@ rect(0,0,1350,700);
  text(frames2, 100,100);
  text(seconds, 100,200);
  text(second(), 100,250);
+   button(#FC0307, -2, -2, 100, 50, 255,90,"start game restart game");
+ fill(255);
+   textSize(24);
+  text("Quit",20,30);
  }
 
   
@@ -428,15 +449,25 @@ rect(0,0,1350,700);
    radical();
   fill(255);
    text(frames2, 0,0);
+  
+  button(#FC0307, -2, -2, 100, 50, 255,90,"start game restart game");
+ fill(255);
+  textSize(24);
+  text("Quit",20,30);
  }
 
 
   if(matthew == true){
   startup = false;
     clear();
-    rect(0,0,1350, 700); 
+   
  //This was the first project I did this year.
 gamesonphone();
+
+  button(#FC0307, -2, -2, 100, 50, 255,90,"start game restart game");
+ fill(255);
+  textSize(24);
+  text("Quit",20,30);
 }
 
 //                                                                                          _/
@@ -511,15 +542,15 @@ void button(color basecolour, float cornerx, float cornery, float sizex, float s
     if(function.toLowerCase().equals("start game snakes")){
       snakes=true;
       startup=false;
-    }
-    if(function.toLowerCase().equals("start game c4")){
-      c4=true;
-      startup=false;
-    }
-    if(function.toLowerCase().equals("start game uno")){
-      uno=true;
-      startup=false;
-    }
+    
+if (startgameturn==0) {
+    player2turn=true;
+  }
+  if (startgameturn==1) {
+    player1turn=true;
+  }  
+}
+   
     if(function.toLowerCase().equals("start game war")){
       war=true;
       startup=false;
@@ -532,7 +563,17 @@ void button(color basecolour, float cornerx, float cornery, float sizex, float s
       matthew=true;
       startup=false;
     }
+    if(function.toLowerCase().equals("start game restart game")){
+    startup = true;
+    snakes = false;
+ monopoly = false;
+war = false;
+ matthew = false;
+ radical = false;
+  
+  prestartup();
     
+    }
     
     fill(whenpressed);
   }
@@ -579,8 +620,8 @@ void gamesonphone(){
  background(#A8AAAA); 
 textFont(createFont("Comic Sans MS", 24));
 fill(0, 0, 0);
-text("you got games",0,20);
-text("on your phone?",0, 40);
+text("you got games",0,65);
+text("on your phone?",0, 85);
 text("patent pending",450, 40);
 fill(#02D0F2);
 stroke(#000000);

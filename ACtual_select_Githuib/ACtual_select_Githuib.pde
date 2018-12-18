@@ -592,7 +592,7 @@ void button(color basecolour, float cornerx, float cornery, float sizex, float s
       war = false;
       matthew = false;
       radical = false;
-
+      gameover = false;
       prestartup();
     }
 

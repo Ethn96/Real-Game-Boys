@@ -379,6 +379,8 @@ void draw() {
         textSize(120);
         text("PLAYER 1 WINS", 200, 300);
         gameover=true;
+        player1turn=false;
+        player2turn=false;
 
         button(0, 500, 350, 300, 150, 255, 90, "start game restart game");
         textSize(24);
@@ -395,6 +397,8 @@ void draw() {
 
         text("PLAYER 2 WINS", 200, 300);
         gameover=true;
+        player1turn=false;
+        player2turn=false;
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         textSize(24);

@@ -10,54 +10,35 @@ int dicebuttonsizey=100;
 boolean player1turn=true;
 boolean player2turn=false;
 boolean piecemovement=false;
-int s0 = 975;
-int s1 = 870;
-int s2 = 785;
-int s3 = 700;
-int s4 = 610;
-int s5 = 530;
-int s6 = 435;
-int s7 = 355;
-int s8 = 270;
-int s9 = 180;
-int s10 = 20;
-int s11;
-int s12;
-int s13;
-int s14;
-int s15;
-int s16;
-int s17;
-int s18;
-int s19;
-int s20;
-int s21;
-int s22;
-int s23;
-int s24;
-int s25;
-int s26;
-int s27;
-int s28;
-int s29;
-int s30;
-int s31;
-int s32;
-int s33;
-int s34;
-int s35;
-int s36;
-int s37;
-int s38;
-int s39;
-int s40;
-int player1x = s0;
-int player1y = 640;
-int player2x = s0;
-int player2y = 640;
+int s0x = 975;
+int s1x = 870;
+int s2x = 785;
+int s3x = 700;
+int s4x = 610;
+int s5x = 530;
+int s6x = 435;
+int s7x = 355;
+int s8x = 270;
+int s9x = 180;
+int s10x = 20;
+int s0y = 640;//
+int s1y = 650;
+int s2y = 590;
+int s3y = 570;
+int s4y = 550;
+int s5y = 530;
+int s6y = 510;
+int s7y = 490;
+int s8y = 470;
+int s9y = 120;
+int s10y = 30;//
+int player1x = s0x;
+int player1y = s0y;
+int player2x = s0x;
+int player2y = s0y;
 int space=0;
 int xlocation;
-int ylocation=s0;
+int ylocation;
 
 void setup() {
   size(1350, 700);
@@ -81,41 +62,54 @@ void draw() {
   rect(1080, 570, 120, 120);
   fill(0);
   dice();
-  if(space>=40){
+  if (space>=40) {
     space-=40;
   }
-  if(space==0 || space>=30){
-    xlocation=s0;
+  if (space==0 || space>=30) {
+    xlocation=s0x;
+  } else if (space==1 || space==29) {
+    xlocation=s1x;
+  } else if (space==2 || space==28) {
+    xlocation=s2x;
+  } else if (space==3 || space==27) {
+    xlocation=s3x;
+  } else if (space==4 || space==26) {
+    xlocation=s4x;
+  } else if (space==5 || space==25) {
+    xlocation=s5x;
+  } else if (space==6 || space==24) {
+    xlocation=s6x;
+  } else if (space==7 || space==23) {
+    xlocation=s7x;
+  } else if (space==8 || space==22) {
+    xlocation=s8x;
+  } else if (space==9 || space==21) {
+    xlocation=s9x;
+  } else if (space>=10 && space<=20) {
+    xlocation=s10x;
   }
-  if(space==1 || space==29){
-    xlocation=s1;
-  }
-  if(space==2 || space==28){
-    xlocation=s2;
-  }
-  if(space==3 || space==27){
-    xlocation=s3;
-  }
-  if(space==4 || space==26){
-    xlocation=s4;
-  }
-  if(space==5 || space==25){
-    xlocation=s5;
-  }
-  if(space==6 || space==24){
-    xlocation=s6;
-  }
-  if(space==7 || space==23){
-    xlocation=s7;
-  }
-  if(space==8 || space==22){
-    xlocation=s8;
-  }
-  if(space==9 || space==21){
-    xlocation=s9;
-  }
-  if(space>=10 && space<=20){
-    xlocation=s10;
+  if (space>=0 && space<=10) {
+    ylocation=s0y;
+  } else if (space==11 || space==39) {
+    ylocation=s1y;
+  } else if (space==12 || space==38) {
+    ylocation=s2y;
+  } else if (space==13 || space==37) {
+    ylocation=s3y;
+  } else if (space==14 || space==36) {
+    ylocation=s4y;
+  } else if (space==15 || space==35) {
+    ylocation=s5y;
+  } else if (space==16 || space==34) {
+    ylocation=s6y;
+  } else if (space==17 || space==33) {
+    ylocation=s7y;
+  } else if (space==18 || space==32) {
+    ylocation=s8y;
+  } else if (space==19 || space==31) {
+    ylocation=s9y;
+  } else if (space>=20 || space<=30) {
+    ylocation=s10y;
   }
   player1x=xlocation;
   player1y=ylocation;
@@ -129,43 +123,43 @@ void mousePressed() {
     dice2+=1;
     dicetotal = dice1 + dice2;
 
-      if (dicetotal == 2) {
-space+=2;
-      }
-      if (dicetotal == 3) {
-space+=3;
-      }
-      if (dicetotal == 4) {
-space+=4;
-      }
-      if (dicetotal == 5) {
-space+=5;
-      }
-      if (dicetotal == 6) {
-space+=6;
-      }
-      if (dicetotal == 7) {
-space+=7;
-      }
-      if (dicetotal == 8) {
-space+=8;
-      }
-      if (dicetotal == 9) {
-space+=9;
-      }
-      if (dicetotal == 10) {
-space+=10;
-      }
-      if (dicetotal == 11) {
-space+=11;
-      }
-      if (dicetotal == 12) {
-space+=12;
-      }
+    if (dicetotal == 2) {
+      space+=2;
     }
-    //player1turn = false;
-    //player2turn = true;
+    if (dicetotal == 3) {
+      space+=3;
+    }
+    if (dicetotal == 4) {
+      space+=4;
+    }
+    if (dicetotal == 5) {
+      space+=5;
+    }
+    if (dicetotal == 6) {
+      space+=6;
+    }
+    if (dicetotal == 7) {
+      space+=7;
+    }
+    if (dicetotal == 8) {
+      space+=8;
+    }
+    if (dicetotal == 9) {
+      space+=9;
+    }
+    if (dicetotal == 10) {
+      space+=10;
+    }
+    if (dicetotal == 11) {
+      space+=11;
+    }
+    if (dicetotal == 12) {
+      space+=12;
+    }
   }
+  //player1turn = false;
+  //player2turn = true;
+}
 
 
 void dice() {

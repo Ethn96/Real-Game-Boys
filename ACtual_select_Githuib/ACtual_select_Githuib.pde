@@ -13,6 +13,7 @@ boolean snakes = false;
 boolean uno = false;
 boolean war = false;
 boolean c4 = false;
+boolean restartsnakes = false;
 
 boolean radical = false;
 boolean matthew = false;
@@ -381,7 +382,8 @@ void draw() {
         gameover=true;
         player1turn=false;
         player2turn=false;
-
+        
+        restartsnakes=true;
         button(0, 500, 350, 300, 150, 255, 90, "start game restart game");
         textSize(24);
         fill(#12FFED);
@@ -400,7 +402,7 @@ void draw() {
         player1turn=false;
         player2turn=false;
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        restartsnakes=true;
         textSize(24);
         button(0, 500, 350, 300, 150, 255, 90, "start game restart game"); 
         fill(#12FFED);
@@ -591,12 +593,15 @@ void button(color basecolour, float cornerx, float cornery, float sizex, float s
     }
     if (function.toLowerCase().equals("start game restart game")) {
       startup = true;
+      gameover = false;
+      if(restartsnakes==false){
       snakes = false;
+      }
+      restartsnakes=false;
       monopoly = false;
       war = false;
       matthew = false;
       radical = false;
-      gameover = false;
       selectdice();
     }
 
@@ -784,6 +789,25 @@ void mouseClicked() {
     piecemovement=true;
     startgameturn=-1;
   }
+  /*
+  if(player1turn && (x1countdown>0 || x1countdown<0) && piecemovement==true && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)){
+    if(x1countdown<0){
+     player1x-=x1countdown;
+     x1countdown=0;
+    }else if(x1countdown>0){
+     player1x+=x1countdown;
+     x1countdown=0;
+    }
+  }else if(player2turn && (x2countdown>0 || x2countdown<0) && piecemovement==true && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)){
+    if(x2countdown<0){
+     player2x-=x2countdown;
+     x2countdown=0;
+    }else if(x2countdown>0){
+     player2x+=x2countdown;
+     x2countdown=0;
+    }
+  }
+  */
 }
 void button(color basecolour, float cornerx, float cornery, float sizex, float sizey, color whenhovered) {
   //shows the VISUALS of a button

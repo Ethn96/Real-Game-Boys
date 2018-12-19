@@ -13,7 +13,6 @@ boolean snakes = false;
 boolean uno = false;
 boolean war = false;
 boolean c4 = false;
-boolean restartsnakes = false;
 
 boolean radical = false;
 boolean matthew = false;
@@ -382,8 +381,7 @@ void draw() {
         gameover=true;
         player1turn=false;
         player2turn=false;
-        
-        restartsnakes=true;
+
         button(0, 500, 350, 300, 150, 255, 90, "start game restart game");
         textSize(24);
         fill(#12FFED);
@@ -402,7 +400,7 @@ void draw() {
         player1turn=false;
         player2turn=false;
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        restartsnakes=true;
+
         textSize(24);
         button(0, 500, 350, 300, 150, 255, 90, "start game restart game"); 
         fill(#12FFED);
@@ -594,10 +592,8 @@ void button(color basecolour, float cornerx, float cornery, float sizex, float s
     if (function.toLowerCase().equals("start game restart game")) {
       startup = true;
       gameover = false;
-      if(restartsnakes==false){
       snakes = false;
-      }
-      restartsnakes=false;
+
       monopoly = false;
       war = false;
       matthew = false;
@@ -700,6 +696,96 @@ void mouseClicked() {
     player1turn=true;
     player2turn=false;
   }
+    if (player1turn && piecemovement==true && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)) {
+    if (x1countdown<=(925-player1x) && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+      player1x+=x1countdown;
+      x1countdown=0;
+    }
+   if (x1countdown>(925-player1x) && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+      x1countdown-=(925-player1x);
+      player1x=925;
+      player1y-=68;
+      x1countdown-=85;
+      x1countdown*=-1;
+    }
+   if ((x1countdown*-1)<=(player1x-160) && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
+      player1x+=x1countdown;
+      x1countdown=0;
+    }
+   if ((x1countdown*-1)>(player1x-160) && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
+      if (player1y!=8) {
+        x1countdown+=((player1x-160));
+      player1x=160;
+      player1y-=68;
+      x1countdown+=85;
+      x1countdown*=-1;
+      } else {
+        x1countdown+=((player1x-160));
+        x1countdown*=-1;
+      player1x=160;
+      }
+    }
+    if (x1countdown<=(925-player1x) && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+      player1x+=x1countdown;
+      x1countdown=0;
+    }
+   if (x1countdown>(925-player1x) && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+      x1countdown-=(925-player1x);
+      player1x=925;
+      player1y-=68;
+      x1countdown-=85;
+      x1countdown*=-1;
+    }
+    if (player1y==8 && x1countdown<0) {
+      player1x+=x1countdown;
+      x1countdown=0;
+    }
+  }
+    if (player2turn && piecemovement==true && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)) {
+    if (x2countdown<=(925-player2x) && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+      player2x+=x2countdown;
+      x2countdown=0;
+    }
+   if (x2countdown>(925-player2x) && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+      x2countdown-=(925-player2x);
+      player2x=925;
+      player2y-=68;
+      x2countdown-=85;
+      x2countdown*=-1;
+    }
+   if ((x2countdown*-1)<=(player2x-160) && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
+      player2x+=x2countdown;
+      x2countdown=0;
+    }
+   if ((x2countdown*-1)>(player2x-160) && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
+      if (player2y!=8) {
+        x2countdown+=((player2x-160));
+      player2x=160;
+      player2y-=68;
+      x2countdown+=85;
+      x2countdown*=-1;
+      } else {
+        x2countdown+=((player2x-160));
+        x2countdown*=-1;
+      player2x=160;
+      }
+    }
+    if (x2countdown<=(925-player2x) && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+      player2x+=x2countdown;
+      x2countdown=0;
+    }
+   if (x2countdown>(925-player2x) && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+      x2countdown-=(925-player2x);
+      player2x=925;
+      player2y-=68;
+      x2countdown-=85;
+      x2countdown*=-1;
+    }
+    if (player2y==8 && x2countdown<0) {
+      player2x+=x2countdown;
+      x2countdown=0;
+    }
+  }
   if (player1turn && piecemovement==false && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)) {
     dice=Dice();
     //dice=1;
@@ -789,25 +875,6 @@ void mouseClicked() {
     piecemovement=true;
     startgameturn=-1;
   }
-  /*
-  if(player1turn && (x1countdown>0 || x1countdown<0) && piecemovement==true && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)){
-    if(x1countdown<0){
-     player1x-=x1countdown;
-     x1countdown=0;
-    }else if(x1countdown>0){
-     player1x+=x1countdown;
-     x1countdown=0;
-    }
-  }else if(player2turn && (x2countdown>0 || x2countdown<0) && piecemovement==true && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)){
-    if(x2countdown<0){
-     player2x-=x2countdown;
-     x2countdown=0;
-    }else if(x2countdown>0){
-     player2x+=x2countdown;
-     x2countdown=0;
-    }
-  }
-  */
 }
 void button(color basecolour, float cornerx, float cornery, float sizex, float sizey, color whenhovered) {
   //shows the VISUALS of a button

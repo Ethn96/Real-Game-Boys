@@ -1,6 +1,7 @@
 PImage MonopolyBoard;
 PImage Player1;
 PImage Player2;
+PImage MediterraneanAvenue;
 int dice1 = 0;
 int dice2 = 0;
 int dicetotal;
@@ -11,7 +12,127 @@ int dicebuttonsizey=100;
 boolean player1turn=true;
 boolean player2turn=false;
 boolean piecemovement=false;
-boolean s1ownedplayer1;
+boolean space1ownedplayer1;
+boolean space2ownedplayer1;
+boolean space3ownedplayer1;
+boolean space4ownedplayer1;
+boolean space5ownedplayer1;
+boolean space6ownedplayer1;
+boolean space7ownedplayer1;
+boolean space8ownedplayer1;
+boolean space9ownedplayer1;
+boolean space10ownedplayer1;
+boolean space11ownedplayer1;
+boolean space12ownedplayer1;
+boolean space13ownedplayer1;
+boolean space14ownedplayer1;
+boolean space15ownedplayer1;
+boolean space16ownedplayer1;
+boolean space17ownedplayer1;
+boolean space18ownedplayer1;
+boolean space19ownedplayer1;
+boolean space20ownedplayer1;
+boolean space21ownedplayer1;
+boolean space22ownedplayer1;
+boolean space23ownedplayer1;
+boolean space24ownedplayer1;
+boolean space25ownedplayer1;
+boolean space26ownedplayer1;
+boolean space27ownedplayer1;
+boolean space28ownedplayer1;
+boolean space29ownedplayer1;
+boolean space30ownedplayer1;
+boolean space31ownedplayer1;
+boolean space32ownedplayer1;
+boolean space33ownedplayer1;
+boolean space34ownedplayer1;
+boolean space35ownedplayer1;
+boolean space36ownedplayer1;
+boolean space37ownedplayer1;
+boolean space38ownedplayer1;
+boolean space39ownedplayer1;
+boolean space40ownedplayer1;
+
+boolean space1ownedplayer2;
+boolean space2ownedplayer2;
+boolean space3ownedplayer2;
+boolean space4ownedplayer2;
+boolean space5ownedplayer2;
+boolean space6ownedplayer2;
+boolean space7ownedplayer2;
+boolean space8ownedplayer2;
+boolean space9ownedplayer2;
+boolean space10ownedplayer2;
+boolean space11ownedplayer2;
+boolean space12ownedplayer2;
+boolean space13ownedplayer2;
+boolean space14ownedplayer2;
+boolean space15ownedplayer2;
+boolean space16ownedplayer2;
+boolean space17ownedplayer2;
+boolean space18ownedplayer2;
+boolean space19ownedplayer2;
+boolean space20ownedplayer2;
+boolean space21ownedplayer2;
+boolean space22ownedplayer2;
+boolean space23ownedplayer2;
+boolean space24ownedplayer2;
+boolean space25ownedplayer2;
+boolean space26ownedplayer2;
+boolean space27ownedplayer2;
+boolean space28ownedplayer2;
+boolean space29ownedplayer2;
+boolean space30ownedplayer2;
+boolean space31ownedplayer2;
+boolean space32ownedplayer2;
+boolean space33ownedplayer2;
+boolean space34ownedplayer2;
+boolean space35ownedplayer2;
+boolean space36ownedplayer2;
+boolean space37ownedplayer2;
+boolean space38ownedplayer2;
+boolean space39ownedplayer2;
+boolean space40ownedplayer2;
+
+boolean space2unowned;
+boolean space3unowned;
+boolean space4unowned;
+boolean space5unowned;
+boolean space6unowned;
+boolean space7unowned;
+boolean space8unowned;
+boolean space9unowned;
+boolean space10unowned;
+boolean space11unowned;
+boolean space12unowned;
+boolean space13unowned;
+boolean space14unowned;
+boolean space15unowned;
+boolean space16unowned;
+boolean space17unowned;
+boolean space18unowned;
+boolean space19unowned;
+boolean space20unowned;
+boolean space21unowned;
+boolean space22unowned;
+boolean space23unowned;
+boolean space24unowned;
+boolean space25unowned;
+boolean space26unowned;
+boolean space27unowned;
+boolean space28unowned;
+boolean space29unowned;
+boolean space30unowned;
+boolean space31unowned;
+boolean space32unowned;
+boolean space33unowned;
+boolean space34unowned;
+boolean space35unowned;
+boolean space36unowned;
+boolean space37unowned;
+boolean space38unowned;
+boolean space39unowned;
+boolean space40unowned;
 int s0x = 975;
 int s1x = 870;
 int s2x = 785;
@@ -48,6 +169,7 @@ void setup() {
   MonopolyBoard = loadImage("MonopolyBoard.jpg");
   Player1 = loadImage("Player1.png");
   Player2 = loadImage("Player2.png");
+  MediterraneanAvenue = loadImage("Mediterranean Avenue.jpg");
 }
 
 void draw() {
@@ -66,8 +188,11 @@ void draw() {
   rect(1220, 570, 120, 120);
   rect(1080, 570, 120, 120);
   fill(0);
-  textSize(30);
-  text(player1money, 1200, 200);
+  textSize(18);
+  text("player 1 money", 1060, 40);
+  text(player1money, 1110, 68);
+  text("player 2 money", 1210, 40);
+  text(player2money, 1260, 68);
   dice();
   if (space>=40) {
     space-=40;
@@ -170,6 +295,11 @@ void draw() {
   } else if (space1>=20 || space1<=30) {
     player2y=s10y;
   }
+
+  if (player1x == s1x && player1y == s0y) {
+    image(MediterraneanAvenue, 530, 300, 200, 280);
+    buybutton(#246EFF, 1100, 300, 130, 80, #1555D1);
+  }
 }
 
 void mousePressed() {
@@ -257,6 +387,11 @@ void mousePressed() {
     }
     player2turn = false;
     player1turn = true;
+  }
+
+  if (1100<mouseX && mouseX<(1100+130) && 300<mouseY && mouseY<(300+80) && space == 1 && player1turn == true) {
+    space1ownedplayer1 = true;
+    player1money-=200;
   }
 }
 

@@ -376,8 +376,8 @@ void draw() {
       x1countdown*=-1;
       if (x1countdown==0) {
         fill(#4BFFFA);
-        textSize(120);
-        text("PLAYER 1 WINS", 200, 300);
+        textSize(100);
+        text("PLAYER 1 (RED) WINS", 130, 300);
         gameover=true;
         player1turn=false;
         player2turn=false;
@@ -385,7 +385,7 @@ void draw() {
         button(0, 500, 350, 300, 150, 255, 90, "start game restart game");
         textSize(24);
         fill(#12FFED);
-        text("Quit to Menu", 545, 430);
+        text("Quit to Menu", 570, 430);
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       }
     }
@@ -393,9 +393,9 @@ void draw() {
       x2countdown*=-1;
       if (x2countdown==0) {
         fill(#4BFFFA);
-        textSize(120);
+        textSize(100);
 
-        text("PLAYER 2 WINS", 200, 300);
+        text("PLAYER 2 (YELLOW) WINS", 60, 300);
         gameover=true;
         player1turn=false;
         player2turn=false;
@@ -404,7 +404,7 @@ void draw() {
         textSize(24);
         button(0, 500, 350, 300, 150, 255, 90, "start game restart game"); 
         fill(#12FFED);
-        text("Click Here to Restart", 530, 430);
+        text("Quit to Menu", 570, 430);
       }
     }
 

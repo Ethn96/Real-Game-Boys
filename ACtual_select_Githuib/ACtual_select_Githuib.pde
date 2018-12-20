@@ -378,7 +378,7 @@ void draw() {
         fill(#4BFFFA);
         textSize(120);
         text("PLAYER 1 WINS", 200, 300);
-        //gameover=true;
+        gameover=true;
         player1turn=false;
         player2turn=false;
 
@@ -396,7 +396,7 @@ void draw() {
         textSize(120);
 
         text("PLAYER 2 WINS", 200, 300);
-        //gameover=true;
+        gameover=true;
         player1turn=false;
         player2turn=false;
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

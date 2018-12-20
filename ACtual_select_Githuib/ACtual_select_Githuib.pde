@@ -77,7 +77,6 @@ void setup() {
   Player=loadImage("player.png");
   Player2=loadImage("player2.png");
   startgameturn=int(random(2));
-  background(#149636);
 }
 
 void draw() {
@@ -452,126 +451,124 @@ void draw() {
 
   if (warB == true) {
     startup = false;
- 
-  
-   if (CardFlipped) {
-    DrawCard(RandomNumbers());
-    CardFlipped = false;
-  } else if (CardFlipped1) {
-    DrawCard1(RandomNumbers1());  // drawing cards
-    CardFlipped1 = false;
-    Draw = true;
-  }
 
-  fill(#149636);
-  noStroke(); //clears winner
-  rect(1000, 0, 1200, 100);
+    if (gameover==false) {
+      if (CardFlipped) {
+        DrawCard(RandomNumbers());
+        CardFlipped = false;
+      } else if (CardFlipped1) {
+        DrawCard1(RandomNumbers1());  // drawing cards
+        CardFlipped1 = false;
+        Draw = true;
+      }
 
-
-  fill(0);
-  textSize(24);
-  text("Player 1 score: " + p1Score, 1100, 40);
-  text("Player 2 score: " + p2Score, 1100, 75);
-
-  if (Draw == true) {
+      fill(#149636);
+      noStroke(); //clears winner
+      rect(1000, 0, 1200, 100);
 
 
-    if (card > 39 && card < 53) {
-      card = card-39;
-    }
-    if (card > 26 && card < 40) { //changes all scores to something in the 1-13 range
-      card = card-26;
-    }
-    if (card > 13 && card < 27) {
-      card = card-13;
-    }
+      fill(0);
+      textSize(24);
+      text("Player 1 score: " + p1Score, 1100, 40);
+      text("Player 2 score: " + p2Score, 1100, 75);
+
+      if (Draw == true) {
 
 
-    if (card1 > 39 && card1 < 53) {
-      card1 = card1-39;
-    }
-    if (card1 > 26 && card1 < 40) { //changes all scores to something in the 1-13 range
-      card1 = card1-26;
-    }
-    if (card1 > 13 && card1 < 27) {
-      card1 = card1-13;
-    }
-    if (card > card1) {
-      text("Player one wins!", 1100, 150);  //scoring system
-      p1Score +=1;
-      if (war == true) {
-        p1Score +=2; 
-        fill(#149636); 
-        rect(0, 350, 1000, 250);
-        fill(0);
-        text("the war!",1100,175);
-        war = false;
+        if (card > 39 && card < 53) {
+          card = card-39;
+        }
+        if (card > 26 && card < 40) { //changes all scores to something in the 1-13 range
+          card = card-26;
+        }
+        if (card > 13 && card < 27) {
+          card = card-13;
+        }
+
+
+        if (card1 > 39 && card1 < 53) {
+          card1 = card1-39;
+        }
+        if (card1 > 26 && card1 < 40) { //changes all scores to something in the 1-13 range
+          card1 = card1-26;
+        }
+        if (card1 > 13 && card1 < 27) {
+          card1 = card1-13;
+        }
+        if (card > card1) {
+          text("Player one wins!", 1100, 150);  //scoring system
+          p1Score +=1;
+          if (war == true) {
+            p1Score +=2; 
+            fill(#149636); 
+            rect(0, 350, 1000, 250);
+            fill(0);
+            text("the war!", 1100, 175);
+            war = false;
+          }
+        }
+        if (card1 > card) {
+          text("Player two wins!", 1100, 150);
+          p2Score +=1;
+          if ( war == true) {
+            p2Score +=2; 
+            fill(#149636); 
+            rect(0, 350, 1000, 250);
+            fill(0);
+            text("the war!", 1100, 175);
+            war = false;
+          }
+        }
+
+        if (card1 == card) {
+          //WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR
+          back = loadImage("back.png");
+          textSize(30);
+          text("WAR", 1100, 150);
+          textSize(24);
+          image(back, 400, 60, 230.33333, 352);
+          image(back, 400, 120, 230.33333, 352);
+
+
+
+          image(back, 10, 60, 230.33333, 352);
+          image(back, 10, 120, 230.33333, 352);
+          war = true;
+        }
+
+
+        Draw = false;
       }
     }
-    if (card1 > card) {
-      text("Player two wins!", 1100, 150);
-      p2Score +=1;
-      if ( war == true) {
-        p2Score +=2; 
-        fill(#149636); 
-        rect(0, 350, 1000, 250);
-  fill(0);
-        text("the war!",1100,175);
-        war = false;
+    if (p1Score >= 50 || p2Score >= 50) {
+      background(#149636);
+      textSize(100);
+      text("Game Over", 400, 500);
+
+
+      if (p1Score >= 50) {
+        textSize(48);
+        text("Player One Wins!", 480, 550); // game over section
+        textSize(24);
+        gameover=true;
+      }
+      if (p2Score >= 50) {
+        textSize(48);
+        text("Player Two Wins!", 480, 550);
+        textSize(24);
+        gameover=true;
       }
     }
 
-    if (card1 == card) {
-      //WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR
-      back = loadImage("back.png");
-      textSize(30);
-      text("WAR", 1100, 150);
-      textSize(24);
-      image(back, 400, 60, 230.33333, 352);
-      image(back, 400, 120, 230.33333, 352);
-
-
-
-      image(back, 10, 60, 230.33333, 352);
-      image(back, 10, 120, 230.33333, 352);
-      war = true;
-    }
-
-
-    Draw = false;
-  }
 
 
 
 
-  if (p1Score >= 50 || p2Score >= 50) {
-    textSize(100);
-    text("Game Over", 400, 500);
-
-
-    if (p1Score >= 50) {
-      textSize(48);
-      text("Player One Wins!", 480, 550); // game over section
-      textSize(24);
-    }
-    if (p2Score >= 50) {
-      textSize(48);
-      text("Player Two Wins!", 480, 550);
-      textSize(24);
-    }
-  }
-    
-    
-    
-    
-    
     button(#FC0307, 1250, 650, 100, 50, 255, 90, "start game restart game");
     fill(255);
     textSize(24);
     text("Quit", 1270, 680);
-  
-
-}
+  }
 
 
   if (uno == true) {
@@ -609,8 +606,6 @@ void draw() {
     textSize(24);
     text("Quit", 20, 30);
   }
-  
-   
 }
 
 
@@ -630,7 +625,6 @@ void selectdice() {
   //945
   //1st number is the colour of the button. numbers 2 - 5 dictate the location & size of the button. 
   //number 6 is the colour of the button when hovered over, and number 7 is the colour when clicked. the text dictates which  game is started
-
   button(0, 300, 300, 300, 150, 255, 90, "start game snakes");
   button(0, 520, 500, 300, 150, 255, 90, "start game monopoly");
   //Hidden gif and hidden hidden buttonvvv
@@ -725,8 +719,7 @@ void button(color basecolour, float cornerx, float cornery, float sizex, float s
       selectdice();
       p1Score = 0;
       p2Score = 0;
-  
-}
+    }
 
     fill(whenpressed);
   }
@@ -816,225 +809,215 @@ void gamesonphone() {
 
 void mouseClicked() {
   //spam protection
- 
-  
-  
-  
-  
-  
-  
-  if(snakes == true){
-  if (piecemovement==false && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey) && player1turn) {
-    player2turn=true;
-    player1turn=false;
-  } else if (piecemovement==false && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey) && player2turn) {
-    player1turn=true;
-    player2turn=false;
-  }
-  if (player1turn && piecemovement==true && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)) {
-    if (y1countdown>0) {
-      player1y-=y1countdown;
-      y1countdown=0;
+  if (snakes == true) {
+    if (piecemovement==false && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey) && player1turn) {
+      player2turn=true;
+      player1turn=false;
+    } else if (piecemovement==false && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey) && player2turn) {
+      player1turn=true;
+      player2turn=false;
     }
-    if (x1countdown<=(925-player1x) && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
-      player1x+=x1countdown;
-      x1countdown=0;
-    }
-    if (x1countdown>(925-player1x) && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
-      x1countdown-=(925-player1x);
-      player1x=925;
-      player1y-=68;
-      x1countdown-=85;
-      x1countdown*=-1;
-    }
-    if ((x1countdown*-1)<=(player1x-160) && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
-      player1x+=x1countdown;
-      x1countdown=0;
-    }
-    if ((x1countdown*-1)>(player1x-160) && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
-      if (player1y!=8) {
-        x1countdown+=((player1x-160));
-        player1x=160;
+    if (player1turn && piecemovement==true && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)) {
+      if (y1countdown>0) {
+        player1y-=y1countdown;
+        y1countdown=0;
+      }
+      if (x1countdown<=(925-player1x) && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+        player1x+=x1countdown;
+        x1countdown=0;
+      }
+      if (x1countdown>(925-player1x) && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+        x1countdown-=(925-player1x);
+        player1x=925;
         player1y-=68;
-        x1countdown+=85;
+        x1countdown-=85;
         x1countdown*=-1;
-      } else {
-        x1countdown+=((player1x-160));
-        player1x=160;
+      }
+      if ((x1countdown*-1)<=(player1x-160) && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
+        player1x+=x1countdown;
+        x1countdown=0;
+      }
+      if ((x1countdown*-1)>(player1x-160) && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
+        if (player1y!=8) {
+          x1countdown+=((player1x-160));
+          player1x=160;
+          player1y-=68;
+          x1countdown+=85;
+          x1countdown*=-1;
+        } else {
+          x1countdown+=((player1x-160));
+          player1x=160;
+          x1countdown*=-1;
+          player1x+=x1countdown;
+          x1countdown=0;
+        }
+      }
+      if (x1countdown<=(925-player1x) && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+        player1x+=x1countdown;
+        x1countdown=0;
+      }
+      if (x1countdown>(925-player1x) && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+        x1countdown-=(925-player1x);
+        player1x=925;
+        player1y-=68;
+        x1countdown-=85;
         x1countdown*=-1;
+      }
+      if (player1y==8 && x1countdown<0) {
         player1x+=x1countdown;
         x1countdown=0;
       }
     }
-    if (x1countdown<=(925-player1x) && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
-      player1x+=x1countdown;
-      x1countdown=0;
-    }
-    if (x1countdown>(925-player1x) && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
-      x1countdown-=(925-player1x);
-      player1x=925;
-      player1y-=68;
-      x1countdown-=85;
-      x1countdown*=-1;
-    }
-    if (player1y==8 && x1countdown<0) {
-      player1x+=x1countdown;
-      x1countdown=0;
-    }
-  }
-  if (player2turn && piecemovement==true && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)) {
-    if (y2countdown>0) {
-      player2y-=y2countdown;
-      y2countdown=0;
-    }
-    if (x2countdown<=(925-player2x) && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
-      player2x+=x2countdown;
-      x2countdown=0;
-    }
-    if (x2countdown>(925-player2x) && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
-      x2countdown-=(925-player2x);
-      player2x=925;
-      player2y-=68;
-      x2countdown-=85;
-      x2countdown*=-1;
-    }
-    if ((x2countdown*-1)<=(player2x-160) && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
-      player2x+=x2countdown;
-      x2countdown=0;
-    }
-    if ((x2countdown*-1)>(player2x-160) && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
-      if (player2y!=8) {
-        x2countdown+=((player2x-160));
-        player2x=160;
+    if (player2turn && piecemovement==true && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)) {
+      if (y2countdown>0) {
+        player2y-=y2countdown;
+        y2countdown=0;
+      }
+      if (x2countdown<=(925-player2x) && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+        player2x+=x2countdown;
+        x2countdown=0;
+      }
+      if (x2countdown>(925-player2x) && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+        x2countdown-=(925-player2x);
+        player2x=925;
         player2y-=68;
-        x2countdown+=85;
+        x2countdown-=85;
         x2countdown*=-1;
-      } else {
-        x2countdown+=((player2x-160));
+      }
+      if ((x2countdown*-1)<=(player2x-160) && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
+        player2x+=x2countdown;
+        x2countdown=0;
+      }
+      if ((x2countdown*-1)>(player2x-160) && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
+        if (player2y!=8) {
+          x2countdown+=((player2x-160));
+          player2x=160;
+          player2y-=68;
+          x2countdown+=85;
+          x2countdown*=-1;
+        } else {
+          x2countdown+=((player2x-160));
+          x2countdown*=-1;
+          player2x=160;
+          player2x+=x2countdown;
+          x2countdown=0;
+        }
+      }
+      if (x2countdown<=(925-player2x) && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+        player2x+=x2countdown;
+        x2countdown=0;
+      }
+      if (x2countdown>(925-player2x) && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+        x2countdown-=(925-player2x);
+        player2x=925;
+        player2y-=68;
+        x2countdown-=85;
         x2countdown*=-1;
-        player2x=160;
+      }
+      if (player2y==8 && x2countdown<0) {
         player2x+=x2countdown;
         x2countdown=0;
       }
     }
-    if (x2countdown<=(925-player2x) && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
-      player2x+=x2countdown;
-      x2countdown=0;
+    if (player1turn && piecemovement==false && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)) {
+      dice=Dice();
+      //dice=1;
+      if (dice==1 && player1x==50) {
+        x1countdown=110;
+      } else if (dice==2 && player1x==50) {
+        x1countdown=195;
+      } else if (dice==3 && player1x==50) {
+        x1countdown=280;
+      } else if (dice==4 && player1x==50) {
+        x1countdown=365;
+      } else if (dice==5 && player1x==50) {
+        x1countdown=450;
+      } else if (dice==6 && player1x==50) {
+        x1countdown=535;
+      } else if (dice==1 && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+        x1countdown=85;
+      } else if (dice==2 && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+        x1countdown=170;
+      } else if (dice==3 && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+        x1countdown=255;
+      } else if (dice==4 && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+        x1countdown=340;
+      } else if (dice==5 && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+        x1countdown=425;
+      } else if (dice==6 && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
+        x1countdown=510;
+      } else if (dice==1 && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
+        x1countdown=-85;
+      } else if (dice==2 && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
+        x1countdown=-170;
+      } else if (dice==3 && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
+        x1countdown=-255;
+      } else if (dice==4 && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
+        x1countdown=-340;
+      } else if (dice==5 && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
+        x1countdown=-425;
+      } else if (dice==6 && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
+        x1countdown=-510;
+      }
+      ladderrun=0;
+      snakerun=0;
+      piecemovement=true;
+      startgameturn=-1;
     }
-    if (x2countdown>(925-player2x) && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
-      x2countdown-=(925-player2x);
-      player2x=925;
-      player2y-=68;
-      x2countdown-=85;
-      x2countdown*=-1;
-    }
-    if (player2y==8 && x2countdown<0) {
-      player2x+=x2countdown;
-      x2countdown=0;
+    if (player2turn && piecemovement==false && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)) {
+      dice=Dice();
+      if (dice==1 && player2x==50) {
+        x2countdown=110;
+      } else if (dice==2 && player2x==50) {
+        x2countdown=195;
+      } else if (dice==3 && player2x==50) {
+        x2countdown=280;
+      } else if (dice==4 && player2x==50) {
+        x2countdown=365;
+      } else if (dice==5 && player2x==50) {
+        x2countdown=450;
+      } else if (dice==6 && player2x==50) {
+        x2countdown=535;
+      } else if (dice==1 && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+        x2countdown=85;
+      } else if (dice==2 && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+        x2countdown=170;
+      } else if (dice==3 && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+        x2countdown=255;
+      } else if (dice==4 && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+        x2countdown=340;
+      } else if (dice==5 && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+        x2countdown=425;
+      } else if (dice==6 && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
+        x2countdown=510;
+      } else if (dice==1 && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
+        x2countdown=-85;
+      } else if (dice==2 && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
+        x2countdown=-170;
+      } else if (dice==3 && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
+        x2countdown=-255;
+      } else if (dice==4 && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
+        x2countdown=-340;
+      } else if (dice==5 && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
+        x2countdown=-425;
+      } else if (dice==6 && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
+        x2countdown=-510;
+      }
+      ladderrun=0;
+      snakerun=0;
+      piecemovement=true;
+      startgameturn=-1;
     }
   }
-  if (player1turn && piecemovement==false && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)) {
-    dice=Dice();
-    //dice=1;
-    if (dice==1 && player1x==50) {
-      x1countdown=110;
-    } else if (dice==2 && player1x==50) {
-      x1countdown=195;
-    } else if (dice==3 && player1x==50) {
-      x1countdown=280;
-    } else if (dice==4 && player1x==50) {
-      x1countdown=365;
-    } else if (dice==5 && player1x==50) {
-      x1countdown=450;
-    } else if (dice==6 && player1x==50) {
-      x1countdown=535;
-    } else if (dice==1 && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
-      x1countdown=85;
-    } else if (dice==2 && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
-      x1countdown=170;
-    } else if (dice==3 && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
-      x1countdown=255;
-    } else if (dice==4 && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
-      x1countdown=340;
-    } else if (dice==5 && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
-      x1countdown=425;
-    } else if (dice==6 && (player1y==620 || player1y==484 || player1y==348 || player1y==212 || player1y==76)) {
-      x1countdown=510;
-    } else if (dice==1 && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
-      x1countdown=-85;
-    } else if (dice==2 && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
-      x1countdown=-170;
-    } else if (dice==3 && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
-      x1countdown=-255;
-    } else if (dice==4 && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
-      x1countdown=-340;
-    } else if (dice==5 && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
-      x1countdown=-425;
-    } else if (dice==6 && (player1y==552 || player1y==416 ||player1y==280 || player1y==144 || player1y==8)) {
-      x1countdown=-510;
-    }
-    ladderrun=0;
-    snakerun=0;
-    piecemovement=true;
-    startgameturn=-1;
+  if (warB && gameover == false) {  
+    CardFlipped = true; 
+    background(#149636);
+    CardFlipped1 = true;
+    noStroke();
+    fill(#149636);
+    rect(1000, 100, 1200, 105);
+    fill(0);
   }
-  if (player2turn && piecemovement==false && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey)) {
-    dice=Dice();
-    if (dice==1 && player2x==50) {
-      x2countdown=110;
-    } else if (dice==2 && player2x==50) {
-      x2countdown=195;
-    } else if (dice==3 && player2x==50) {
-      x2countdown=280;
-    } else if (dice==4 && player2x==50) {
-      x2countdown=365;
-    } else if (dice==5 && player2x==50) {
-      x2countdown=450;
-    } else if (dice==6 && player2x==50) {
-      x2countdown=535;
-    } else if (dice==1 && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
-      x2countdown=85;
-    } else if (dice==2 && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
-      x2countdown=170;
-    } else if (dice==3 && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
-      x2countdown=255;
-    } else if (dice==4 && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
-      x2countdown=340;
-    } else if (dice==5 && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
-      x2countdown=425;
-    } else if (dice==6 && (player2y==620 || player2y==484 || player2y==348 || player2y==212 || player2y==76)) {
-      x2countdown=510;
-    } else if (dice==1 && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
-      x2countdown=-85;
-    } else if (dice==2 && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
-      x2countdown=-170;
-    } else if (dice==3 && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
-      x2countdown=-255;
-    } else if (dice==4 && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
-      x2countdown=-340;
-    } else if (dice==5 && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
-      x2countdown=-425;
-    } else if (dice==6 && (player2y==552 || player2y==416 ||player2y==280 || player2y==144 || player2y==8)) {
-      x2countdown=-510;
-    }
-    ladderrun=0;
-    snakerun=0;
-    piecemovement=true;
-    startgameturn=-1;
-  }}
-if(warB == true){  CardFlipped = true; 
-  fill(#149636);
-  rect(0, 0, 1350, 700);
-  CardFlipped1 = true;
-  noStroke();
-  fill(#149636);
-  rect(1000, 100, 1200, 105);
-  fill(0);}
-
-
-
-
-
 }
 void button(color basecolour, float cornerx, float cornery, float sizex, float sizey, color whenhovered) {
   //shows the VISUALS of a button

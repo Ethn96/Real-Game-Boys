@@ -11,7 +11,7 @@ boolean prestartup = true;
 boolean monopoly = false;
 boolean snakes = false;
 boolean uno = false;
-boolean war = false;
+boolean warB = false;
 boolean c4 = false;
 
 boolean radical = false;
@@ -50,7 +50,22 @@ PImage monopolyP;
 PImage unoP;
 PImage warP;
 PImage snakesP;
+int card = 0;  //sets cards default to 0
+int card1 = 0;
+int card2 =0;
+int card3 =0;//sets cards default to 0
+PImage cardE;  //this is all of the cards
+PImage back;   //this is the back of the card
+boolean CardFlipped = false; //
+boolean CardFlipped1 = false;
+boolean CardFlipped2 = false;
+boolean CardFlipped3 = false;
+int p1Score = 0;
+int p2Score = 0;
 
+boolean war = false;
+
+boolean Draw = false;
 
 void setup() {
   size(1350, 700);
@@ -62,10 +77,12 @@ void setup() {
   Player=loadImage("player.png");
   Player2=loadImage("player2.png");
   startgameturn=int(random(2));
+  background(#149636);
 }
 
 void draw() {
   //counts frames & seconds for testing
+
   frames2 = frames2 + 1;
   if (frames2 == 60) {
     frames2 = 0; 
@@ -433,21 +450,128 @@ void draw() {
   }
 
 
-  if (war == true) {
+  if (warB == true) {
     startup = false;
-    clear();
-    fill(0);
-    rect(0, 0, 1350, 700); 
+ 
+  
+   if (CardFlipped) {
+    DrawCard(RandomNumbers());
+    CardFlipped = false;
+  } else if (CardFlipped1) {
+    DrawCard1(RandomNumbers1());  // drawing cards
+    CardFlipped1 = false;
+    Draw = true;
+  }
 
-    fill(255);
-    text(frames2, 100, 100);
-    text(seconds, 100, 200);
-    text(second(), 100, 250);
-    button(#FC0307, -2, -2, 100, 50, 255, 90, "start game restart game");
+  fill(#149636);
+  noStroke(); //clears winner
+  rect(1000, 0, 1200, 100);
+
+
+  fill(0);
+  textSize(24);
+  text("Player 1 score: " + p1Score, 1100, 40);
+  text("Player 2 score: " + p2Score, 1100, 75);
+
+  if (Draw == true) {
+
+
+    if (card > 39 && card < 53) {
+      card = card-39;
+    }
+    if (card > 26 && card < 40) { //changes all scores to something in the 1-13 range
+      card = card-26;
+    }
+    if (card > 13 && card < 27) {
+      card = card-13;
+    }
+
+
+    if (card1 > 39 && card1 < 53) {
+      card1 = card1-39;
+    }
+    if (card1 > 26 && card1 < 40) { //changes all scores to something in the 1-13 range
+      card1 = card1-26;
+    }
+    if (card1 > 13 && card1 < 27) {
+      card1 = card1-13;
+    }
+    if (card > card1) {
+      text("Player one wins!", 1100, 150);  //scoring system
+      p1Score +=1;
+      if (war == true) {
+        p1Score +=2; 
+        fill(#149636); 
+        rect(0, 350, 1000, 250);
+        fill(0);
+        text("the war!",1100,175);
+        war = false;
+      }
+    }
+    if (card1 > card) {
+      text("Player two wins!", 1100, 150);
+      p2Score +=1;
+      if ( war == true) {
+        p2Score +=2; 
+        fill(#149636); 
+        rect(0, 350, 1000, 250);
+  fill(0);
+        text("the war!",1100,175);
+        war = false;
+      }
+    }
+
+    if (card1 == card) {
+      //WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR
+      back = loadImage("back.png");
+      textSize(30);
+      text("WAR", 1100, 150);
+      textSize(24);
+      image(back, 400, 60, 230.33333, 352);
+      image(back, 400, 120, 230.33333, 352);
+
+
+
+      image(back, 10, 60, 230.33333, 352);
+      image(back, 10, 120, 230.33333, 352);
+      war = true;
+    }
+
+
+    Draw = false;
+  }
+
+
+
+
+  if (p1Score >= 50 || p2Score >= 50) {
+    textSize(100);
+    text("Game Over", 400, 500);
+
+
+    if (p1Score >= 50) {
+      textSize(48);
+      text("Player One Wins!", 480, 550); // game over section
+      textSize(24);
+    }
+    if (p2Score >= 50) {
+      textSize(48);
+      text("Player Two Wins!", 480, 550);
+      textSize(24);
+    }
+  }
+    
+    
+    
+    
+    
+    button(#FC0307, 1250, 650, 100, 50, 255, 90, "start game restart game");
     fill(255);
     textSize(24);
-    text("Quit", 20, 30);
-  }
+    text("Quit", 1270, 680);
+  
+
+}
 
 
   if (uno == true) {
@@ -485,8 +609,8 @@ void draw() {
     textSize(24);
     text("Quit", 20, 30);
   }
-
-  //                                                                                          _/
+  
+   
 }
 
 
@@ -578,7 +702,7 @@ void button(color basecolour, float cornerx, float cornery, float sizex, float s
     }
 
     if (function.toLowerCase().equals("start game war")) {
-      war=true;
+      warB=true;
       startup=false;
     }
     if (function.toLowerCase().equals("start game radical")) {
@@ -593,12 +717,15 @@ void button(color basecolour, float cornerx, float cornery, float sizex, float s
       startup = true;
       snakes = false;
       monopoly = false;
-      war = false;
+      warB = false;
       matthew = false;
       radical = false;
       gameover = false;
       selectdice();
-    }
+      p1Score = 0;
+      p2Score = 0;
+  
+}
 
     fill(whenpressed);
   }
@@ -688,6 +815,14 @@ void gamesonphone() {
 
 void mouseClicked() {
   //spam protection
+ 
+  
+  
+  
+  
+  
+  
+  if(snakes == true){
   if (piecemovement==false && gameover==false && dicebuttonx<mouseX && mouseX<(dicebuttonx+dicebuttonsizex) && dicebuttony<mouseY && mouseY<(dicebuttony+dicebuttonsizey) && player1turn) {
     player2turn=true;
     player1turn=false;
@@ -783,7 +918,20 @@ void mouseClicked() {
     snakerun=0;
     piecemovement=true;
     startgameturn=-1;
-  }
+  }}
+if(warB == true){  CardFlipped = true; 
+  fill(#149636);
+  rect(0, 0, 1350, 700);
+  CardFlipped1 = true;
+  noStroke();
+  fill(#149636);
+  rect(1000, 100, 1200, 105);
+  fill(0);}
+
+
+
+
+
 }
 void button(color basecolour, float cornerx, float cornery, float sizex, float sizey, color whenhovered) {
   //shows the VISUALS of a button
@@ -805,4 +953,345 @@ int Dice() {
   int dice = int(random(6));
   dice+=1;
   return dice;
+}
+
+float RandomNumbers1() {
+  card1 = int(random(52)+1); 
+  println(nf(card1, 0, 0));
+  return(card1);
+}
+
+float RandomNumbers() {
+  card = int(random(52)+1); 
+  println(nf(card, 0, 0));
+  return(card);
+}
+
+
+
+
+
+
+void DrawCard(float card) {
+  if (card == 1 ) {
+    cardE   = loadImage("1.png");
+  }
+  if (card == 2 ) { 
+    cardE  = loadImage("2.png");
+  }
+  if (card == 3 ) {
+    cardE   = loadImage("3.png");
+  }
+  if (card ==  4) {
+    cardE   = loadImage("4.png");
+  }
+  if (card ==  5) {
+    cardE   = loadImage("5.png");
+  }
+  if (card ==  6) {
+    cardE   = loadImage("6.png");
+  }
+  if (card ==  7) {  
+    cardE = loadImage("7.png");
+  }
+  if (card ==  8) {  
+    cardE = loadImage("8.png");
+  }
+  if (card ==  9) {  
+    cardE = loadImage("9.png");
+  }
+  if (card ==  10) {
+    cardE = loadImage("10.png");
+  }
+  if (card ==  11) {
+    cardE = loadImage("11.png");
+  }
+  if (card ==  12) {
+    cardE = loadImage("12.png");
+  }
+  if (card ==  13) {
+    cardE = loadImage("13.png");
+  }
+  if (card ==  14) {
+    cardE = loadImage("14.png");
+  }
+  if (card ==  15) {
+    cardE = loadImage("15.png");
+  }
+  if (card ==  16) {
+    cardE = loadImage("16.png");
+  }
+  if (card ==  17) {
+    cardE = loadImage("17.png");
+  }
+  if (card ==  18) {
+    cardE = loadImage("18.png");
+  }
+  if (card ==  19) {
+    cardE = loadImage("19.png");
+  }
+  if (card ==  20) {
+    cardE = loadImage("20.png");
+  }
+  if (card ==  21) {
+    cardE = loadImage("21.png");
+  }
+  if (card ==  22) {
+    cardE = loadImage("22.png");
+  }
+  if (card ==  23) {
+    cardE = loadImage("23.png");
+  }
+  if (card ==  24) {
+    cardE = loadImage("24.png");
+  }
+  if (card ==  25) {
+    cardE = loadImage("25.png");
+  }
+  if (card ==  26) {
+    cardE = loadImage("26.png");
+  }
+  if (card ==  27) {
+    cardE = loadImage("27.png");
+  }
+  if (card ==  28) {
+    cardE = loadImage("28.png");
+  }
+  if (card ==  29) {
+    cardE = loadImage("29.png");
+  }
+  if (card ==  30) {
+    cardE = loadImage("30.png");
+  }
+  if (card ==  31) {
+    cardE = loadImage("31.png");
+  }
+  if (card ==  32) {
+    cardE = loadImage("32.png");
+  }
+  if (card ==  33) {
+    cardE = loadImage("33.png");
+  }
+  if (card ==  34) {
+    cardE = loadImage("34.png");
+  }
+  if (card ==  35) {
+    cardE = loadImage("35.png");
+  }
+  if (card ==  36) {
+    cardE = loadImage("36.png");
+  }
+  if (card ==  37) {
+    cardE = loadImage("37.png");
+  }
+  if (card ==  38) {
+    cardE = loadImage("38.png");
+  }
+  if (card ==  39) {
+    cardE = loadImage("39.png");
+  }
+  if (card ==  40) {
+    cardE = loadImage("40.png");
+  }
+  if (card ==  41) {
+    cardE = loadImage("41.png");
+  }
+  if (card ==  42) {
+    cardE = loadImage("42.png");
+  }
+  if (card ==  43) {
+    cardE = loadImage("43.png");
+  }
+  if (card ==  44) {
+    cardE = loadImage("44.png");
+  }
+  if (card ==  45) {
+    cardE = loadImage("45.png");
+  }
+  if (card ==  46) {
+    cardE = loadImage("46.png");
+  }
+  if (card ==  47) {
+    cardE = loadImage("47.png");
+  }
+  if (card ==  48) {
+    cardE = loadImage("48.png");
+  }
+  if (card ==  49) {
+    cardE = loadImage("49.png");
+  }
+  if (card ==  50) {
+    cardE = loadImage("50.png");
+  }
+  if (card ==  51) {
+    cardE = loadImage("51.png");
+  }
+  if (card ==  52) {
+    cardE = loadImage("52.png");
+  }
+
+  image(cardE, 10, 2, 230.33333, 352);
+}
+
+
+
+void DrawCard1(float card1) {
+  if (card1 == 1 ) {
+    cardE   = loadImage("1.png");
+  }
+  if (card1 == 2 ) { 
+    cardE  = loadImage("2.png");
+  }
+  if (card1 == 3 ) {
+    cardE   = loadImage("3.png");
+  }
+  if (card1 ==  4) {
+    cardE   = loadImage("4.png");
+  }
+  if (card1 ==  5) {
+    cardE   = loadImage("5.png");
+  }
+  if (card1 ==  6) {
+    cardE   = loadImage("6.png");
+  }
+  if (card1 ==  7) {  
+    cardE = loadImage("7.png");
+  }
+  if (card1 ==  8) {  
+    cardE = loadImage("8.png");
+  }
+  if (card1 ==  9) {  
+    cardE = loadImage("9.png");
+  }
+  if (card1 ==  10) {
+    cardE = loadImage("10.png");
+  }
+  if (card1 ==  11) {
+    cardE = loadImage("11.png");
+  }
+  if (card1 ==  12) {
+    cardE = loadImage("12.png");
+  }
+  if (card1 ==  13) {
+    cardE = loadImage("13.png");
+  }
+  if (card1 ==  14) {
+    cardE = loadImage("14.png");
+  }
+  if (card1 ==  15) {
+    cardE = loadImage("15.png");
+  }
+  if (card1 ==  16) {
+    cardE = loadImage("16.png");
+  }
+  if (card1 ==  17) {
+    cardE = loadImage("17.png");
+  }
+  if (card1 ==  18) {
+    cardE = loadImage("18.png");
+  }
+  if (card1 ==  19) {
+    cardE = loadImage("19.png");
+  }
+  if (card1 ==  20) {
+    cardE = loadImage("20.png");
+  }
+  if (card1 ==  21) {
+    cardE = loadImage("21.png");
+  }
+  if (card1 ==  22) {
+    cardE = loadImage("22.png");
+  }
+  if (card1 ==  23) {
+    cardE = loadImage("23.png");
+  }
+  if (card1 ==  24) {
+    cardE = loadImage("24.png");
+  }
+  if (card1 ==  25) {
+    cardE = loadImage("25.png");
+  }
+  if (card1 ==  26) {
+    cardE = loadImage("26.png");
+  }
+  if (card1 ==  27) {
+    cardE = loadImage("27.png");
+  }
+  if (card1 ==  28) {
+    cardE = loadImage("28.png");
+  }
+  if (card1 ==  29) {
+    cardE = loadImage("29.png");
+  }
+  if (card1 ==  30) {
+    cardE = loadImage("30.png");
+  }
+  if (card1 ==  31) {
+    cardE = loadImage("31.png");
+  }
+  if (card1 ==  32) {
+    cardE = loadImage("32.png");
+  }
+  if (card1 ==  33) {
+    cardE = loadImage("33.png");
+  }
+  if (card1 ==  34) {
+    cardE = loadImage("34.png");
+  }
+  if (card1 ==  35) {
+    cardE = loadImage("35.png");
+  }
+  if (card1 ==  36) {
+    cardE = loadImage("36.png");
+  }
+  if (card1 ==  37) {
+    cardE = loadImage("37.png");
+  }
+  if (card1 ==  38) {
+    cardE = loadImage("38.png");
+  }
+  if (card1 ==  39) {
+    cardE = loadImage("39.png");
+  }
+  if (card1 ==  40) {
+    cardE = loadImage("40.png");
+  }
+  if (card1 ==  41) {
+    cardE = loadImage("41.png");
+  }
+  if (card1 ==  42) {
+    cardE = loadImage("42.png");
+  }
+  if (card1 ==  43) {
+    cardE = loadImage("43.png");
+  }
+  if (card1 ==  44) {
+    cardE = loadImage("44.png");
+  }
+  if (card1 ==  45) {
+    cardE = loadImage("45.png");
+  }
+  if (card1 ==  46) {
+    cardE = loadImage("46.png");
+  }
+  if (card1 ==  47) {
+    cardE = loadImage("47.png");
+  }
+  if (card1 ==  48) {
+    cardE = loadImage("48.png");
+  }
+  if (card1 ==  49) {
+    cardE = loadImage("49.png");
+  }
+  if (card1 ==  50) {
+    cardE = loadImage("50.png");
+  }
+  if (card1 ==  51) {
+    cardE = loadImage("51.png");
+  }
+  if (card1 ==  52) {
+    cardE = loadImage("52.png");
+  }
+
+  image(cardE, 400, 2, 230.33333, 352);
 }
